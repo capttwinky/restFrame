@@ -1,5 +1,4 @@
-a minimal WSGI application framework for customizing responses for 
-resources by HTTP methods.
+a minimal WSGI application framework for customizing responses for resources by HTTP methods.
 
 Run with Twisted by using: 
 
