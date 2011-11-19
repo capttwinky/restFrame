@@ -1,5 +1,7 @@
 a minimal WSGI application framework for customizing responses for resources by HTTP methods.
 
 Run with Twisted by using: 
-
 twistd -n web --wsgi twistedrestexample.application
+
+Run with gunicorn by using:
+gunicorn -w 4 restexample:application -b localhost:8080
