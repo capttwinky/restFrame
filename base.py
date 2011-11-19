@@ -23,7 +23,7 @@ def http2str(strUrl, strMethod = 'GET', strBody=None, dictHeaders=None):
 if __name__=="__main__":
     #print(http2str('http://www.google.com'))
     
-    strUrl = "http://your.url"
+    strUrl = "http://localhost:8080"
     print(http2str(strUrl,'GET'))
     print(http2str(strUrl,'POST'))
     print(http2str(strUrl,'POST','jp=cool'))
