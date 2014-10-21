@@ -17,22 +17,21 @@ class restFrame(object):
 
 def application(environ, start_response, appFrame):
     myApp = appFrame
-    myApp.environ = environ
-    myOut = myApp.dictOut
+    appFrame.environ = environ
     myMethod = environ.get('REQUEST_METHOD').lower()
-    myOut['method'] = myMethod
-    myFn = myApp.getFn(myMethod)
+    myApp.dictOut['method'] = myMethod
+    myFn = appFrame.getFn(myMethod)
     status = '500 ERROR'
     if myFn:
         try:
-            myOut['response'] = myFn()
+            myApp.dictOut['response'] = myFn()
             status = '200 OK'
         except Exception as e:
-            myOut['error'] = str(e)
+            myApp.dictOut['error'] = str(e)
     else:
-        myOut['error'] = "%s unknown"%myMethod
-    myOut['timestamp'] = base.lstNow()
-    response_body = json.dumps(myOut)
-    response_headers = [('Content-Type', 'text/html'), ('Content-Length', str(len(str(response_body))))]
+        myApp.dictOut['error'] = "Method {} unknown".format(myMethod)
+    myApp.dictOut['timestamp'] = base.lstNow()
+    response_body = json.dumps(myApp.dictOut)
+    response_headers = [('Content-Type', 'application/json'), ('Content-Length', str(len(str(response_body))))]
     start_response(status, response_headers)
     return response_body
